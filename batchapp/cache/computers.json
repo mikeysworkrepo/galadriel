@@ -1,0 +1,5 @@
+[
+    { "name": "CBO-WS01", "ip": "192.168.1.100", "status": "online" },
+    { "name": "CBO-WS02", "ip": "192.168.1.101", "status": "offline" }
+  ]
+  

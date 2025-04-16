@@ -1,0 +1,1 @@
+Get-ADComputer -Filter * | Sort-Object Name | Select-Object -ExpandProperty Name
