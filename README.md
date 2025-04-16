@@ -1,20 +1,51 @@
-This is a WIP local batchapp RMM type application
-I am creating this to not only learn windows systems, but also to continue learning go
+# BatchApp (WIP)
 
-The app uses the framework wails: https://wails.io/
-This framework allows you to build the frontend in Javascript/Typescript, while creating the backend and core logic in Go
+This is a WIP local BatchApp — an RMM-style application.
 
-To build this on your own, after installing the dependencies from NPM, you must install the wails framework here: https://wails.io/docs/gettingstarted/installation/
+I am creating this to not only learn Windows systems, but also to continue learning Go.
 
-To run the dev build that allows printing to the terminal just type: wails dev
-To build into an executable type: wails build
+---
 
-It builds the exe in the src/build/bin folder. I reccomend running as admin
+##  Tech Stack
 
-To do back end:
-Create custom error variables for different funcitons, and possibly a debug console for the build
-I may possibly decide to bring over mass deployment functionality from my CLI version, though it will only be for learning purposes, as I do not feel
-like spending the time building out all the error handling for this functionality 
+The app uses the **[Wails framework](https://wails.io/)**.  
+This framework allows you to build the frontend in JavaScript/TypeScript, while writing the backend and core logic in Go.
 
-To do frontend:
-implement search funcitonality and possibly create tabs/groups of different OU's instead of scrolling to your desired computer
+---
+
+##  Getting Started
+
+To build this on your own:
+
+1. Install dependencies with **npm** in the `frontend` folder
+2. Install the Wails CLI: [Installation Docs](https://wails.io/docs/gettingstarted/installation/)
+
+---
+
+##  Commands
+
+- Run the dev build (with terminal output):
+  ```bash
+  wails dev
+
+- To build into an executable - The executable will be in the src/build/bin folder
+  ```bash
+  wails build
+  
+ 
+## Important note!
+
+This project expects certain PowerShell deployment scripts and software installers (e.g., Sophos, SentinelOne) to be hosted on a local HTTP server.
+
+In my setup:
+
+These files are hosted on a Raspberry Pi running a lightweight Go-based HTTP server
+
+URLs used by the app point to locations like:
+http://raspberrypi.local:8080/scripts/... or .../software/...
+
+If you're running this yourself:
+
+You'll need to host your own scripts and .exe files
+
+Update all relevant URLs in the backend logic to match your environment (e.g., use your own IP or hostname)
