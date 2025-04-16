@@ -22,7 +22,7 @@ function App() {
 
       useEffect(() => {
         HostName()
-        .then((name: string) => setHostName(name)) // ✅ explicitly show it returns a string
+        .then((name: string) => setHostName(name)) //  explicitly show it returns a string
         .catch(err => console.error("HostName error:", err));
       }, []);
 
@@ -47,7 +47,7 @@ function App() {
         GetComputers().then(setComputers).catch(console.error)
     }
 
-    // func for selecting pc and passing it to the deploy software func
+    // func for selecting pc and passing it to the download and install software func
     const handleOffice = () => {
       if (selectedComputer?.Name) {
         DeployOffice(selectedComputer.Name)

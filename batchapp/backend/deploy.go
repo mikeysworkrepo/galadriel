@@ -9,8 +9,7 @@ import (
 )
 
 // to do
-// need to clean up sophos function
-// test functions on non DA or local admin account
+// eventually make more custom error variables for each function, and create a debug console for the build
 type DeployFunc func(targetPC string) error
 
 func (a *App) DeployToTargets(targetPCs []string, deploy DeployFunc) {
@@ -73,7 +72,9 @@ func (a *App) DeployPrinters(targetPC string) error {
 }
 
 func downloadAndExecuteScript(targetPC, remoteURL, localPath string) error {
-	// Step 1: Download the script to the target
+	// this function is a blanket download and install function for the software deployments
+
+	// Downloads the script to the target pc in the temp folder
 	downloadCmd := exec.Command(
 		"C:\\Windows\\PsExec64.exe",
 		"\\\\"+targetPC,
@@ -88,7 +89,7 @@ func downloadAndExecuteScript(targetPC, remoteURL, localPath string) error {
 		return fmt.Errorf("download failed: %v\nOutput: %s", err, string(out))
 	}
 
-	// Step 2: Run the script
+	//  Run the script
 	runCmd := exec.Command(
 		"C:\\Windows\\PsExec64.exe",
 		"\\\\"+targetPC,

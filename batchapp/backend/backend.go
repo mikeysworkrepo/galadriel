@@ -21,7 +21,7 @@ func NewApp() *App {
 }
 
 func (a *App) GetComputers() ([]Computer, error) {
-	// Define the PowerShell command as a Go string
+	// defines the PowerShell command as a Go string and gets all the computers on the domain
 	powershellScript := `
 	Get-ADComputer -Filter * -Property IPv4Address |
 	Sort-Object Name |
@@ -31,7 +31,7 @@ func (a *App) GetComputers() ([]Computer, error) {
 	ConvertTo-Json -Depth 2
 	`
 
-	// Run PowerShell silently
+	// runs PowerShell silently
 	cmd := exec.Command("powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", powershellScript)
 	cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true} // <--- hides the popup window
 
@@ -53,6 +53,7 @@ func (a *App) GetComputers() ([]Computer, error) {
 	return result, nil
 }
 
+// a vestigual function from my original CLI program, no longer used
 func (a *App) DeploySoftware(targetPCs []string) {
 	psScriptURL := "http://raspberrypi.local:8080/scripts/officeInstall.ps1"
 	localScriptPath := "C:\\Windows\\Temp\\officeInstall.ps1"
@@ -75,7 +76,7 @@ func (a *App) DeploySoftware(targetPCs []string) {
 			continue
 		}
 
-		// Step 2: Run the script silently (non-interactively, runs as SYSTEM)
+		// runs as SYSTEM)
 		runScriptCmd := exec.Command(
 			"C:\\Windows\\PsExec64.exe",
 			"\\\\"+targetPC,
